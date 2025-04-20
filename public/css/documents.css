@@ -1,0 +1,40 @@
+.breadcrumb {
+    background-color: #f8f9fa;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+}
+
+.table th {
+    background-color: #f8f9fa;
+}
+
+.btn-link {
+    color: #6c757d;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+.btn-link:hover {
+    color: #0d6efd;
+}
+
+.input-group {
+    width: 300px;
+}
+
+.badge {
+    font-size: 0.85rem;
+    padding: 0.5em 0.75em;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .input-group {
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    .card-header {
+        flex-direction: column;
+    }
+} 

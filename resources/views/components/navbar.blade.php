@@ -18,17 +18,17 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('herramientas') ? 'active' : '' }}" href="">
+                    <a class="nav-link {{ request()->routeIs('tools') ? 'active' : '' }}" href="{{ route('tools') }}">
                         <i class="fas fa-tools"></i> Herramientas
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('documentos') ? 'active' : '' }}" href="">
+                    <a class="nav-link {{ request()->routeIs('documentos') ? 'active' : '' }}" href="{{ route('documents') }}">
                         <i class="fas fa-file-alt"></i> Documentos
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('nosotros') ? 'active' : '' }}" href="">
+                    <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">
                         <i class="fas fa-users"></i> Nosotros
                     </a>
                 </li>
