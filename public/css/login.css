@@ -1,0 +1,68 @@
+:root {
+    --hospital-blue: #1a73e8;
+    --hospital-blue-light: #4285f4;
+    --hospital-blue-dark: #0d47a1;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.hospital-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hospital-logo i {
+    font-size: 3rem;
+    color: var(--hospital-blue);
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+}
+
+.form-control:focus {
+    border-color: var(--hospital-blue);
+    box-shadow: 0 0 0 0.2rem rgba(26, 115, 232, 0.25);
+}
+
+.btn-login {
+    background: var(--hospital-blue);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background: var(--hospital-blue-dark);
+    transform: translateY(-2px);
+}
+
+.forgot-password {
+    color: var(--hospital-blue);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.forgot-password:hover {
+    color: var(--hospital-blue-dark);
+    text-decoration: underline;
+} 
