@@ -24,5 +24,6 @@
     <script src="{{ asset('js/about.js') }}"></script>
     <script src="{{ asset('js/tools.js') }}"></script>
     <script src="{{ asset('js/committees.js') }}"></script>
+    <script src="{{ asset('js/tabs/committees.js') }}"></script>
 </body>
 </html>

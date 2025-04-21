@@ -1,79 +1,64 @@
+/* Estilos específicos para la sección de comités */
 .committees-section {
     background-color: #f8f9fa;
     min-height: 100vh;
+    padding: 2rem 0;
 }
 
-/* Hero Section */
-.hero-section {
-    background: linear-gradient(135deg, #0143a3, #0097b2);
-    padding: 6rem 0;
-    margin-bottom: 3rem;
+/* Estilos específicos para la tarjeta principal */
+.committees-card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Estilos específicos para las pestañas */
+.committees-tabs {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.nav-link-committee {
+    color: #6c757d;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    font-weight: 500;
     position: relative;
-    overflow: hidden;
 }
 
-.hero-section::before {
+.nav-link-committee:hover {
+    color: #0143a3;
+    border: none;
+}
+
+.nav-link-committee.active {
+    color: #0143a3;
+    background: none;
+}
+
+.nav-link-committee.active::after {
     content: '';
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.05)"/></svg>');
-    opacity: 0.3;
+    height: 2px;
+    background-color: #0143a3;
 }
 
-.text-white-75 {
-    color: rgba(255, 255, 255, 0.75);
+/* Estilos específicos para el contenido de las pestañas */
+.committees-tab-content {
+    padding: 1.5rem 0;
 }
 
-/* Stats Row */
-.stats-row {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-top: 3rem;
-}
-
-.stat-item {
-    color: white;
-    text-align: center;
-}
-
-.stat-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 0.5rem;
-}
-
-.stat-label {
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
-
-/* Committee Cards */
+/* Estilos específicos para las tarjetas de comités */
 .committee-card {
     background: white;
-    border-radius: 20px;
+    border-radius: 15px;
     padding: 2rem;
-    height: 100%;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.committee-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, #0143a3, #0097b2);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    border: none;
 }
 
 .committee-card:hover {
@@ -81,11 +66,7 @@
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
-.committee-card:hover::before {
-    opacity: 1;
-}
-
-.card-icon {
+.committee-card .card-icon {
     width: 60px;
     height: 60px;
     background: linear-gradient(135deg, #0143a3, #0097b2);
@@ -101,33 +82,40 @@
     transform: scale(1.1);
 }
 
-.card-icon i {
+.committee-card .card-icon i {
     font-size: 24px;
     color: white;
 }
 
-.card-title {
+.committee-card .card-title {
     font-size: 1.25rem;
     font-weight: 600;
     color: #2d3748;
     margin-bottom: 1rem;
 }
 
-.card-description {
+.committee-card .card-description {
     color: #718096;
     font-size: 0.95rem;
     line-height: 1.5;
     margin-bottom: 1.5rem;
 }
 
-.card-actions {
+.committee-card .meeting-info {
+    color: #718096;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.committee-card .card-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: auto;
 }
 
-.btn-details {
+.committee-card .btn-details {
     color: #0143a3;
     text-decoration: none;
     font-weight: 500;
@@ -136,17 +124,17 @@
     transition: all 0.3s ease;
 }
 
-.btn-details:hover {
+.committee-card .btn-details:hover {
     color: #0097b2;
     transform: translateX(5px);
 }
 
-.quick-actions {
+.committee-card .quick-actions {
     display: flex;
     gap: 0.5rem;
 }
 
-.btn-action {
+.committee-card .btn-action {
     width: 35px;
     height: 35px;
     border-radius: 10px;
@@ -157,21 +145,31 @@
     background: #f8f9fa;
     text-decoration: none;
     transition: all 0.3s ease;
+    border: none;
 }
 
-.btn-action:hover {
+.committee-card .btn-action:hover {
     background: #0143a3;
     color: white;
     transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
-    .stats-row {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
+/* Estilos para la tabla de reuniones */
+.table {
+    margin-bottom: 0;
+}
 
-    .hero-section {
-        padding: 4rem 0;
-    }
-} 
+.table th {
+    font-weight: 600;
+    color: #2d3748;
+    border-top: none;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.badge {
+    padding: 0.5em 0.75em;
+    font-weight: 500;
+}

@@ -15,14 +15,18 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Solo crear el usuario de prueba si no existe
+        if (!User::where('email', 'test@gmail.com')->exists()) {
+            User::factory()->create([
+                'name' => 'test',
+                'email' => 'test@gmail.com',
+            ]);
+        }
 
         $this->call([
             AdminUserSeeder::class,
             CommitteeSeeder::class,
+            CommitteeMemberSeeder::class,
         ]);
     }
 }

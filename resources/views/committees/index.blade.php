@@ -2,94 +2,82 @@
 
 @section('content')
 <div class="committees-section">
-    <!-- Hero Section -->
-    <div class="hero-section mb-5">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="col-lg-8">
-                    <h1 class="display-4 fw-bold text-white mb-3 animate__animated animate__fadeInUp">
-                        Comités Institucionales
-                    </h1>
-                    <p class="lead text-white-75 mb-4 animate__animated animate__fadeInUp animate__delay-1s">
-                        Gestión y seguimiento de los comités del hospital para garantizar la excelencia en nuestros servicios
-                    </p>
-                    <div class="stats-row animate__animated animate__fadeInUp animate__delay-2s">
-                        <div class="stat-item">
-                            <div class="stat-value">{{ $committees->count() }}</div>
-                            <div class="stat-label">Comités Activos</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">24/7</div>
-                            <div class="stat-label">Disponibilidad</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">100%</div>
-                            <div class="stat-label">Compromiso</div>
-                        </div>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">Comités</li>
+                    </ol>
+                </nav>
             </div>
         </div>
-    </div>
 
-    <!-- Committees Grid -->
-    <div class="container">
-        <div class="row g-4">
-            @foreach($committees as $committee)
-            <div class="col-md-6 col-lg-4">
-                <div class="committee-card">
-                    <div class="card-icon">
-                        @php
-                            $icons = [
-                                'etica-medica' => 'fa-heart',
-                                'gagas' => 'fa-leaf',
-                                'atencion-integral-victimas-violencia-sexual' => 'fa-hands-holding',
-                                'humanizacion' => 'fa-users',
-                                'historias-clinicas' => 'fa-folder',
-                                'hospitalario-emergencias' => 'fa-hospital',
-                                'copasst' => 'fa-shield-alt',
-                                'calidad' => 'fa-award',
-                                'vigilancia-epidemiologica' => 'fa-chart-line',
-                                'estadisticas-vitales' => 'fa-chart-bar',
-                                'seguridad-paciente' => 'fa-user-shield',
-                                'iaas' => 'fa-microscope',
-                                'iamii' => 'fa-child',
-                                'rias' => 'fa-road',
-                                'farmacia-terapeutica' => 'fa-capsules'
-                            ];
-                            $icon = $icons[$committee->slug] ?? 'fa-users';
-                        @endphp
-                        <i class="fas {{ $icon }}"></i>
-                    </div>
-                    <h3 class="card-title">{{ $committee->name }}</h3>
-                    <p class="card-description">{{ $committee->description }}</p>
-                    <div class="card-actions">
-                        <a href="{{ route('committees.show', $committee->slug) }}" class="btn-details">
-                            Ver detalles
-                            <i class="fas fa-arrow-right ms-2"></i>
-                        </a>
-                        <div class="quick-actions">
-                            <a href="{{ route('committees.meetings.index', $committee->slug) }}" class="btn-action" title="Ver reuniones">
-                                <i class="fas fa-calendar-alt"></i>
-                            </a>
-                            <a href="{{ route('committees.members.index', $committee->slug) }}" class="btn-action" title="Ver miembros">
-                                <i class="fas fa-users"></i>
-                            </a>
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card committees-card">
+                    <div class="card-body">
+                        <h1 class="h3 mb-4">Comités Institucionales</h1>
+                        
+                        <!-- Pestañas -->
+                        <ul class="nav nav-tabs committees-tabs mb-4" id="committeesTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link-committee active" id="committees-tab" data-bs-toggle="tab" data-bs-target="#committees" type="button" role="tab">
+                                    <i class="fas fa-users me-2"></i>Comités
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link-committee" id="meetings-tab" data-bs-toggle="tab" data-bs-target="#meetings" type="button" role="tab">
+                                    <i class="fas fa-calendar-alt me-2"></i>Reuniones
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link-committee" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming" type="button" role="tab">
+                                    <i class="fas fa-clock me-2"></i>Próximas Reuniones
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link-committee" id="tasks-tab" data-bs-toggle="tab" data-bs-target="#tasks" type="button" role="tab">
+                                    <i class="fas fa-tasks me-2"></i>Tareas
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link-committee" id="task-followup-tab" data-bs-toggle="tab" data-bs-target="#task-followup" type="button" role="tab">
+                                    <i class="fas fa-chart-line me-2"></i>Seguimiento Tareas
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link-committee" id="pending-signatures-tab" data-bs-toggle="tab" data-bs-target="#pending-signatures" type="button" role="tab">
+                                    <i class="fas fa-file-signature me-2"></i>Firmas Pendientes
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link-committee" id="signature-tab" data-bs-toggle="tab" data-bs-target="#signature" type="button" role="tab">
+                                    <i class="fas fa-signature me-2"></i>Firma
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Contenido de las pestañas -->
+                        <div class="tab-content committees-tab-content" id="committeesTabsContent">
+                            @include('committees.tabs.committees')
+                            @include('committees.tabs.meetings')
+                            @include('committees.tabs.upcoming-meetings')
+                            @include('committees.tabs.tasks')
+                            @include('committees.tabs.task-followup')
+                            @include('committees.tabs.pending-signatures')
+                            @include('committees.tabs.signature')
                         </div>
                     </div>
                 </div>
             </div>
-            @endforeach
         </div>
     </div>
 </div>
 @endsection
 
-@push('styles')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-<link rel="stylesheet" href="{{ asset('css/committees.css') }}">
-@endpush
 
-@push('scripts')
-<script src="{{ asset('js/committees.js') }}"></script>
-@endpush
+
+
+
+
