@@ -9,10 +9,65 @@
             <input type="text" id="committeeSearch" class="form-control border-start-0" placeholder="Buscar comités...">
         </div>
         @if(auth()->user()->role === 'admin')
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCommitteeModal">
                 <i class="fas fa-plus me-2"></i> Crear Comité
             </button>
         @endif
+    </div>
+
+    <!-- Modal para crear comité -->
+    <div class="modal fade" id="createCommitteeModal" tabindex="-1" aria-labelledby="createCommitteeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createCommitteeModalLabel">Crear Comité</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('committees.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                        </div>
+                        <input type="hidden" name="status" value="active">
+                        <input type="hidden" name="slug" id="slug" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Crear Comité</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación para eliminar comité -->
+    <div class="modal fade" id="deleteCommitteeModal" tabindex="-1" aria-labelledby="deleteCommitteeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteCommitteeModalLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Está seguro de eliminar el comité <span id="committeeNameToDelete" class="fw-bold"></span>?</p>
+                    <p class="text-danger"><small>Esta acción no se puede deshacer.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form id="deleteCommitteeForm" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Sí, Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row g-4" id="committeesContainer">
@@ -53,9 +108,20 @@
                         </div>
                         <div class="mt-auto">
                             <div class="d-flex justify-content-end">
-                                <a href="{{ route('committees.show', $committee->id) }}" class="btn btn-sm btn-outline-primary">
+                                <a href="{{ route('committees.show', $committee->id) }}" class="btn btn-sm btn-outline-primary me-2">
                                     <i class="fas fa-eye me-1"></i> Ver Detalles
                                 </a>
+                                @if(auth()->user()->role === 'admin')
+                                    <button type="button" 
+                                            class="btn btn-sm btn-outline-danger delete-committee-btn" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#deleteCommitteeModal"
+                                            data-committee-id="{{ $committee->id }}"
+                                            data-committee-name="{{ $committee->name }}"
+                                            data-bs-whatever="{{ $committee->name }}">
+                                        <i class="fas fa-trash me-1"></i> Borrar
+                                    </button>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -112,25 +178,11 @@
 
 @push('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('committeeSearch');
-    const committeeCards = document.querySelectorAll('.committee-card');
 
-    searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
-        
-        committeeCards.forEach(card => {
-            const name = card.getAttribute('data-name');
-            const description = card.getAttribute('data-description');
-            
-            if (name.includes(searchTerm) || description.includes(searchTerm)) {
-                card.style.display = '';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
-});
 </script>
 @endpush
+
+
+
+
 

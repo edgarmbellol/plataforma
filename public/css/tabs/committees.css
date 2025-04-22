@@ -1,0 +1,41 @@
+
+    .hover-shadow {
+        transition: all 0.3s ease;
+    }
+    .hover-shadow:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+    .icon-wrapper {
+        transition: all 0.3s ease;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .card:hover .icon-wrapper {
+        background-color: var(--bs-primary);
+    }
+    .card:hover .icon-wrapper i {
+        color: white !important;
+    }
+    .input-group-lg .form-control,
+    .input-group-lg .input-group-text {
+        padding: 1rem;
+    }
+    .input-group:focus-within {
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+    .input-group:focus-within .input-group-text {
+        border-color: #86b7fe;
+    }
+    .card {
+        min-height: 200px;
+    }
+    .card-body {
+        height: 100%;
+    }
+    .committee-icon {
+        min-width: 60px;
+    }

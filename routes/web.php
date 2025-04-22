@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
         ->name('committees.meetings.index');
     Route::get('/committees/{committee:slug}/members', [CommitteeMembersController::class, 'index'])
         ->name('committees.members.index');
+    Route::post('/committees/create', [CommitteesController::class, 'store'])->name('committees.store');
 });
 
 
